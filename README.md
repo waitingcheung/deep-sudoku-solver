@@ -1,6 +1,8 @@
 # Deep Sudoku Solver
 A Sudoku Solver that leverages [TensorFlow](https://www.tensorflow.org) and [BNNS](https://developer.apple.com/reference/accelerate/bnns) of iOS 10 SDK for deep learning.
 
+<img src="https://cloud.githubusercontent.com/assets/2617118/24141003/e7d349b6-0e5c-11e7-8be7-d28ce165401f.png" width="300">
+
 ## Usage
 
 1. Add a picture of sudoku puzzle from the photo library.
