@@ -13,24 +13,29 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var parentVC: SudokuViewController!
     
     override func awakeFromNib() {
+        digit.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         addDoneButtonOnNumpad()
     }
     
     func addDoneButtonOnNumpad() {
         let keypadToolbar: UIToolbar = UIToolbar()
         keypadToolbar.items = [
-            UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(updateDigit)),
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIView.endEditing(_:))),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         ]
         keypadToolbar.sizeToFit()
         digit.inputAccessoryView = keypadToolbar
     }
     
-    func updateDigit(sender: UIBarButtonItem!) {
+    func textFieldDidChange(_ textField: UITextField) {
+        let index = digit.tag
         if let text = digit.text, !text.isEmpty {
-            let index = digit.tag
             parentVC.puzzle[index] = Int(text)!
+            parentVC.color[index] = false
+            
+        } else {
+            parentVC.puzzle[index] = -1
+            parentVC.color[index] = true
         }
-        digit.endEditing(true)
     }
 }
