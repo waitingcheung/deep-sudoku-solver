@@ -102,7 +102,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     let centerY = tile.size.height * 0.25
                     let centerRect = CGRect(x: centerX, y: centerY, width: tile.size.width * 0.5, height: tile.size.height * 0.5)
                     
-                    
                     if !isEmptyCell(image: tile, rect: centerRect) {
                         guard let data = magic.mnistData(image: tile)
                             else {
@@ -144,7 +143,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         importButton.isEnabled = true
         dismiss(animated:true, completion: nil)
     }
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
