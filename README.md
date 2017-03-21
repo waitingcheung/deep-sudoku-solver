@@ -48,6 +48,8 @@ let predicted: Int = ai.predict(input: data)
 // Process your predicted label
 ```
 
+Refer to the function ``importSudoku()`` in [ViewController.swift](https://github.com/waitingcheung/deep-sudoku-solver/blob/master/Deep%20Sudoku%20Solver/ViewController.swift#L80) for a full example.
+
 ## Credit
 
 I reused soruce code and configurations from:
