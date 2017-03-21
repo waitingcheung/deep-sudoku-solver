@@ -99,6 +99,8 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if (color[indexPath.row]) {
             cell.digit.textColor = UIColor.blue
+        } else {
+            cell.digit.textColor = UIColor.black
         }
         
         let digit = puzzle[indexPath.row]
