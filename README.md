@@ -17,7 +17,7 @@ The steps below illustrate how to prepare your own training data for TensorFlow 
 
 ### Exporting Models from TensorFlow
 
-I use the Chars74K image dataset for training. My trained models are in the folder [Assets.xcassets](https://github.com/waitingcheung/deep-sudoku-solver/tree/master/Assets.xcassets) with the filename ``model-h#[b|w]-*.dataset``. To train your own models, follow the steps below.
+I use the [Chars74K image dataset](http://www.ee.surrey.ac.uk/CVSSP/demos/chars74k/) for training. My trained models are in the folder [Assets.xcassets](https://github.com/waitingcheung/deep-sudoku-solver/tree/master/Assets.xcassets) with the filename ``model-h#[b|w]-*.dataset``. To train your own models, follow the steps below.
 
 1. Resize your images to dimension of 28x28.
 2. Label your images and split them into training and testing data.
