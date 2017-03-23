@@ -19,10 +19,9 @@ class CollectionViewCell: UICollectionViewCell {
     
     func addDoneButtonOnNumpad() {
         let keypadToolbar: UIToolbar = UIToolbar()
-        keypadToolbar.items = [
-            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIView.endEditing(_:))),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-        ]
+        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIView.endEditing(_:)))
+        keypadToolbar.setItems([flexButton, doneButton], animated: true)
         keypadToolbar.sizeToFit()
         digit.inputAccessoryView = keypadToolbar
     }
