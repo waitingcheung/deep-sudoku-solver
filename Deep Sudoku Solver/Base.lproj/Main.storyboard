@@ -77,6 +77,7 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mGj-Kh-u6k"/>
                                     <barButtonItem systemItem="action" id="dDk-N4-j9N">
                                         <connections>
                                             <action selector="displayShareSheet" destination="uUY-JE-GSr" id="sVM-F2-Zgy"/>
