@@ -86,7 +86,7 @@ class BnnsBuilder {
     
     var dataType: BNNSDataType {
         get {
-            return BNNSDataTypeFloat32
+            return BNNSDataType.float
         }
     }
     
@@ -95,7 +95,7 @@ class BnnsBuilder {
     private var inputShape: BnnsShape!
     private var kernel: (width: Int, height: Int)!
     private var stride = (x: 1, y: 1)
-    private var activation = BNNSActivationFunctionRectifiedLinear
+    private var activation = BNNSActivationFunction.rectifiedLinear
     
     func shape(width: Int, height: Int, channels: Int) -> Self {
         let shape = BnnsShape(width: width, height: height, channels: channels)
@@ -195,15 +195,13 @@ class BnnsBuilder {
             let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
             let pad = (x: x_padding, y: y_padding)
             
-            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType, data_scale: 0, data_bias: 0)
+            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType)
             
-            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType, data_scale: 0, data_bias: 0)
+            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType)
             
-            let weights_data = BNNSLayerData(data: weights, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let bias_data = BNNSLayerData(data: bias, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let activ = BNNSActivation(function: activation, alpha: 0, beta: 0)
+            let weights_data = BNNSLayerData(data: weights, data_type: dataType)
             
-            var layerParams = BNNSConvolutionLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, weights: weights_data, bias: bias_data, activation: activ)
+            var layerParams = BNNSConvolutionLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, weights: weights_data)
             
             struct FakeParams { var a = 0.0; var b = 0.0; var c = 0.0; var d = 0.0 }
             let fake = FakeParams()
@@ -227,14 +225,14 @@ class BnnsBuilder {
             let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
             let pad = (x: x_padding, y: y_padding)
             
-            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType, data_scale: 0, data_bias: 0)
+            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType)
             
-            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType, data_scale: 0, data_bias: 0)
+            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType)
             
             let bias_data = BNNSLayerData()
-            let activ = BNNSActivation(function: BNNSActivationFunctionIdentity, alpha: 0, beta: 0)
+            let activ = BNNSActivation(function: BNNSActivationFunction.identity, alpha: 0, beta: 0)
             
-            var layerParams = BNNSPoolingLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, pooling_function: BNNSPoolingFunctionMax, bias: bias_data, activation: activ)
+            var layerParams = BNNSPoolingLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, pooling_function: BNNSPoolingFunction.max, bias: bias_data, activation: activ)
             
             struct FakeParams { var a = 0.0; var b = 0.0; var c = 0.0; var d = 0.0 }
             let fake = FakeParams()
@@ -254,12 +252,12 @@ class BnnsBuilder {
         
         override func build() -> BnnsFilter? {
             
-            var hiddenIn = BNNSVectorDescriptor(size: input.size, data_type: dataType, data_scale: 0, data_bias: 0)
-            var hiddenOut = BNNSVectorDescriptor(size: output.size, data_type: dataType, data_scale: 0, data_bias: 0)
+            var hiddenIn = BNNSVectorDescriptor(size: input.size, data_type: dataType)
+            var hiddenOut = BNNSVectorDescriptor(size: output.size, data_type: dataType)
             
-            let weights_data = BNNSLayerData(data: weights, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let bias_data = BNNSLayerData(data: bias, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let activ = BNNSActivation(function: activation, alpha: 0, beta: 0)
+            let weights_data = BNNSLayerData(data: weights, data_type: dataType)
+            let bias_data = BNNSLayerData(data: bias, data_type: dataType)
+            let activ = BNNSActivation(function: BNNSActivationFunction.identity, alpha: 0, beta: 0)
             
             var layerParams = BNNSFullyConnectedLayerParameters(in_size: input.size, out_size: output.size, weights: weights_data, bias: bias_data, activation: activ)
             

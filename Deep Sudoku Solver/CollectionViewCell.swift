@@ -26,7 +26,7 @@ class CollectionViewCell: UICollectionViewCell {
         digit.inputAccessoryView = keypadToolbar
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         let index = digit.tag
         if let text = digit.text, !text.isEmpty {
             parentVC.puzzle[index] = Int(text)!

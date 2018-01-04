@@ -164,7 +164,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWasShown(notification: NSNotification) {
+    @objc func keyboardWasShown(notification: NSNotification) {
         doneButton.isEnabled = false
         solveButton.isEnabled = false
         
@@ -176,7 +176,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         collectionView.scrollIndicatorInsets = contentInsets
     }
     
-    func keyboardWillBeHidden(notification: NSNotification) {
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
         doneButton.isEnabled = true
         solveButton.isEnabled = true
         

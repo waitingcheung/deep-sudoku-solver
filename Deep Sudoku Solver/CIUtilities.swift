@@ -12,7 +12,7 @@ import UIKit
 
 extension CIImage {
     func averageColor(rect: CGRect, context: CIContext) -> CIColor {
-        let ciPixel = self.applyingFilter("CIAreaAverage", withInputParameters: [kCIInputExtentKey: CIVector(cgRect: rect)])
+        let ciPixel = self.applyingFilter("CIAreaAverage", parameters: [kCIInputExtentKey: CIVector(cgRect: rect)])
         
         var colourData = [UInt8](repeating: 0, count: 4)
         

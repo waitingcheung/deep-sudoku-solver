@@ -59,7 +59,7 @@ class Grid: CustomStringConvertible {
     /* Convert grid into an array of Int with '0' or '.' for empties. */
     func gridValues(_ grid: String) -> [Int] {
         var res = [Int]()
-        for c in grid.characters {
+        for c in grid {
             switch c {
             case "0",".":
                 res.append(0)
